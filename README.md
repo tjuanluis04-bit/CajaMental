@@ -1,9 +1,7 @@
-# 🧰 Caja de Herramientas Mentales
-App React + Vite. Búsqueda, categorías, favoritos y herramientas propias (se guardan en el dispositivo).
+# 🧰 Caja de Herramientas Mentales (APK Android)
+React + Vite + Capacitor. Cada push a `main` compila el APK con GitHub Actions.
 
-## Publicar
-1. Sube a un repo de GitHub (rama `main`).
-2. Settings → Pages → Source: **GitHub Actions**.
-3. Cada push compila y despliega automáticamente.
-
-Local: `npm install && npm run dev`
+## Instalar en tu celular
+1. Espera a que termine la pestaña **Actions** (≈5 min).
+2. Abre `https://github.com/<usuario>/<repo>/releases/tag/latest` desde el celular.
+3. Descarga **CajaMental.apk** e instálalo (permite "instalar apps de fuentes desconocidas" si te lo pide).

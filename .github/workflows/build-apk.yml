@@ -1,0 +1,32 @@
+name: Compilar APK
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - run: npm install
+      - run: npm run build
+      - run: npx cap add android
+      - run: npx cap sync android
+      - name: Compilar APK (debug, instalable)
+        working-directory: android
+        run: chmod +x gradlew && ./gradlew assembleDebug --no-daemon
+      - run: cp android/app/build/outputs/apk/debug/app-debug.apk CajaMental.apk
+      - uses: actions/upload-artifact@v4
+        with: { name: CajaMental-apk, path: CajaMental.apk }
+      - name: Publicar en Releases (descarga directa desde el celular)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest CajaMental.apk --title "Caja Mental (última versión)" --notes "APK listo para instalar en Android."

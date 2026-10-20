@@ -1,0 +1,6 @@
+{
+  "appId": "com.cajamental.app",
+  "appName": "Caja Mental",
+  "webDir": "dist",
+  "backgroundColor": "#5b5bd6"
+}
