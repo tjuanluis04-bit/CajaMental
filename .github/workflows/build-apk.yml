@@ -17,6 +17,8 @@ jobs:
       - run: npm install
       - run: npm run build
       - run: npx cap add android
+      - name: Aplicar icono personalizado
+        run: cp -r android-icons/. android/app/src/main/res/
       - run: npx cap sync android
       - name: Compilar APK (debug, instalable)
         working-directory: android
